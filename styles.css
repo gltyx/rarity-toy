@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    transition: background-color 0.1s;
+}
+
+body {
+    background-color: rgb(22, 22, 26);
+    color: white;
+    font-family: "Roboto Mono";
+    font-size: 15px;
+}
+
+a {
+    color: rgb(156, 156, 253);
+}
+
+a:visited {
+    color: rgb(156, 156, 253);
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+}
+
+#display-container {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.display { 
+    text-align: center;
+}
+
+#currencies {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.currency {
+    margin-left: 8px;
+    margin-right: 8px;
+
+}
+
+#last-rolls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.last-roll-item {
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 8px;
+    background-color: rgb(31, 31, 37);
+}
+
+#shimmer {
+    color: #9687b3;
+}
+
+#glisten {
+    color: #a3ffeb;
+}
+
+
+
+#menu-buttons, .sub-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.menu-button {
+    margin-left: 4px;
+    margin-right: 4px;
+    background-color: rgb(65, 65, 77);
+    padding: 6px;
+}
+
+.menu-button:hover {
+    background-color: rgb(84, 84, 102);
+    cursor: pointer;
+}
+
+.menu, .sub-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.button {
+    margin-left: 4px;
+    margin-right: 4px;
+    background-color: rgb(48, 48, 54);
+    padding: 6px;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: rgb(65, 65, 77);
+    cursor: pointer;
+}
+
+.regen-button {
+    background-color: #465854;
+    color: #d8fff7;
+}
+
+.regen-button:hover {
+    background-color: #69807b;
+    cursor: pointer;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    text-align: center;
+    align-self: center;
+    margin-bottom: 8px;
+}
+
+.table-row {
+    padding: 4px;
+    background-color: rgb(28, 28, 33);
+}
+
+.table-row:nth-child(odd) {
+    background-color: rgb(37, 37, 43);
+}
+
+.index-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.index-title {
+    text-align: left;
+}
+
+.index-count {
+    text-align: right;
+    float: right;
+    color:#a4a4ac;
+}
+
+.hidden {
+    display: none;
+}
+
+.options-text {
+    text-align: center;
+}
+
+#hard-reset {
+    background-color: rgb(56, 40, 42);
+    color: rgb(240, 104, 104);
+}
+
+@font-face {
+    font-family: "Roboto Mono";
+    src: url(RobotoMono-Regular.ttf);
+}

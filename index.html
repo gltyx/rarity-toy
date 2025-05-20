@@ -1,0 +1,211 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="nav.js"></script>
+    <script src="format.js"></script>
+    <script src="main.js"></script>
+    <title>rarity toy</title>
+</head>
+<body>
+<script src="chs.js"></script>
+<script src="core.js"></script>
+    <div id="app">
+        <div id="display-container">
+            <div id="last-rolls">
+                <div class="last-roll-item">
+                    <div class="display" id="latest-roll-chance">
+                        rolled 1 in 1
+                    </div>
+                    <div class="display" id="latest-roll-rarity">
+                        common
+                    </div>
+                </div>
+                <div class="last-roll-item hidden" id="regen-last-roll-item">
+                    <div class="display" id="latest-regen-roll-chance">
+                        regenerated 1 in 1
+                    </div>
+                    <div class="display" id="latest-regen-roll-rarity">
+                        common
+                    </div>
+                </div>
+            </div>
+            
+            <div id="currencies">
+                <div class="display currency" id="shimmer">
+                    1 shimmer
+                </div>
+                <div class="display currency hidden" id="glisten">
+                    0 glisten
+                </div>
+            </div>
+        </div>
+        <div id="menu-buttons">
+            <div class="menu-button" id="main-menu-button" onclick="changeMenu('main')">
+                main
+            </div>
+            <div class="menu-button regen-button hidden" id="regeneration-menu-button" onclick="changeMenu('regeneration')">
+                regeneration
+            </div>
+            <div class="menu-button" id="index-menu-button" onclick="changeMenu('index')">
+                index
+            </div>
+            <div class="menu-button" id="options-menu-button" onclick="changeMenu('options')">
+                options
+            </div>
+        </div>
+        <div class="menu" id="main-menu">
+            <div class="button-row">
+                <div class="button" id="roll-rarity" onclick="roll()">
+                    roll (ready)
+                </div>
+            </div>
+            <div class="button-row">
+                <div class="button" id="upgrade-luck" onclick="upgradeLuck()">
+                    <b>luck</b><br>1x -> 2.5x<br>10 shimmer
+                </div>
+                <div class="button" id="upgrade-interval" onclick="upgradeInterval()">
+                    <b>interval</b><br>3.0s -> 2.4s<br>10 shimmer
+                </div>
+                <div class="button" id="upgrade-shimmer" onclick="upgradeShimmer()">
+                    <b>shimmer</b><br>1x -> 2x<br>25 shimmer
+                </div>
+            </div>
+            <div class="button-row">
+            </div>
+            <div class="button-row">
+                <b>last 10 rolls</b>
+            </div>
+            <div class="table" id="last-10-rolls">
+                <div class="table-row" id="roll-0">none</div>
+                <div class="table-row" id="roll-1">none</div>
+                <div class="table-row" id="roll-2">none</div>
+                <div class="table-row" id="roll-3">none</div>
+                <div class="table-row" id="roll-4">none</div>
+                <div class="table-row" id="roll-5">none</div>
+                <div class="table-row" id="roll-6">none</div>
+                <div class="table-row" id="roll-7">none</div>
+                <div class="table-row" id="roll-8">none</div>
+                <div class="table-row" id="roll-9">none</div>
+            </div>
+            <div class="button-row">
+            </div>
+            <div class="button-row">
+                <b>best roll</b>
+            </div>
+            <div class="table" id="best-roll-table">
+                <div class="table-row" id="best-roll">none</div>
+            </div>
+        </div>
+
+        <div class="menu hidden" id="regeneration-menu">
+            <div class="button-row">
+                <div class="button regen-button" id="roll-regen-rarity" onclick="rollRegen()">
+                    regenerate (1.0x luck)
+                </div>
+            </div>
+            <div class="button-row">
+                <div class="button regen-button" id="upgrade-regen-luck" onclick="upgradeRegenLuck()">
+                    <b>luck</b><br>1x -> 5x<br>1 glisten
+                </div>
+                <div class="button regen-button" id="upgrade-regen-shimmer" onclick="upgradeRegenShimmer()">
+                    <b>shimmer</b><br>1x -> 2x<br>1 glisten
+                </div>
+                <div class="button regen-button" id="upgrade-regen-rluck" onclick="upgradeRegenRLuck()">
+                    <b>regen luck</b><br>1x -> 2.5x<br>3 glisten
+                </div>
+                <div class="button regen-button" id="upgrade-regen-glisten" onclick="upgradeRegenGlisten()">
+                    <b>glisten</b><br>1x -> 2x<br>5 glisten
+                </div>
+            </div>
+            <div class="button-row">
+            </div>
+            <div class="button-row">
+                <b>last 10 regenerations</b>
+            </div>
+            <div class="table" id="last-10-regen-rolls">
+                <div class="table-row" id="regen-roll-0">none</div>
+                <div class="table-row" id="regen-roll-1">none</div>
+                <div class="table-row" id="regen-roll-2">none</div>
+                <div class="table-row" id="regen-roll-3">none</div>
+                <div class="table-row" id="regen-roll-4">none</div>
+                <div class="table-row" id="regen-roll-5">none</div>
+                <div class="table-row" id="regen-roll-6">none</div>
+                <div class="table-row" id="regen-roll-7">none</div>
+                <div class="table-row" id="regen-roll-8">none</div>
+                <div class="table-row" id="regen-roll-9">none</div>
+            </div>
+            <div class="button-row">
+            </div>
+            <div class="button-row">
+                <b>best regeneration</b>
+            </div>
+            <div class="table" id="best-regen-roll-table">
+                <div class="table-row" id="best-regen-roll">none</div>
+            </div>
+        </div>
+
+        <div class="menu hidden" id="index-menu">
+            <div class="sub-buttons" id="sub-index-buttons">
+                <div class="menu-button" id="main-index-button" onclick="changeSubMenu('main', 'index')">
+                    main
+                </div>
+                <div class="menu-button regen-button hidden" id="regeneration-index-button" onclick="changeSubMenu('regeneration', 'index')">
+                    regeneration
+                </div>
+            </div>
+            <div class="sub-menu index-sub" id="index-main-sub">
+                <div class="table" id="index-main-table">
+                
+                </div>
+            </div>
+            <div class="sub-menu index-sub hidden" id="index-regeneration-sub">
+                <div class="table" id="index-regen-table">
+                
+                </div>
+            </div>    
+        </div>
+
+        <div class="menu hidden" id="options-menu">
+            <div class="button-row">
+                <div class="button" id="save" onclick="save()">
+                    save
+                </div>
+                <div class="button"id="import" onclick="importSave()">
+                    import
+                </div>
+                <div class="button"id="export" onclick="exportSave()">
+                    export
+                </div>
+                <div class="button" id="hard-reset"onclick="hardReset()">
+                    reset
+                </div>
+            </div>
+            <div class="options-text">
+                rarity toy v0.1 by <a href="https://clawrez.gay/" target="_blank">milo</a><br>
+                <a href="https://discord.gg/GwvYGnsmtN" target="_blank">discord</a>
+            </div>
+                
+        </div>
+    </div>
+    <script>load();loadIndex();</script>
+<!--客服 开始-->
+<script src="//g8hh.github.io/static/js/jquery.min.js"></script>
+<link rel="stylesheet" href="//g8hh.github.io/static/css/kf.css" type="text/css" media="screen" charset="utf-8">
+<script src="//g8hh.github.io/static/js/kf.js"></script>
+<!-- 客服 结束 -->
+<!--站长统计-->
+    <div style="display: none">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6581389daf4dd6fe7dbb4d20fdcb52a6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    </div>
+</body>
+</html>
